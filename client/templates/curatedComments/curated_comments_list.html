@@ -1,0 +1,67 @@
+<!--
+Note curatedComments in "{{#each curatedComments}}" refers to the helper function
+curatedComments.
+
+Template.curatedCommentsList.helpers({
+  curatedComments: function() {
+    return CuratedComments.find({});
+  }
+});
+
+class="nav nav-pills" => pills
+class="nav nav-tabs"  => tabs
+class="active" -> makes the item the default tab to be rendered.
+
+***Book Quotes not working***
+-->
+
+<template name="curatedCommentsList">
+  <div class="col-sm-10 col-sm-offset-1">
+    <h4>
+      {{#each book}}
+        {{book_title}} ({{author}})
+      {{/each}}
+    </h4>
+    <ul id="bookDetails" class="nav nav-tabs" role="tablist">
+      <li class="active">
+        <a href="#curatedReviews" role="tab" data-toggle="tab">
+          Curated Reviews
+        </a>
+      </li>
+      <li>
+        <a href="#bookDescription" role="tab" data-toggle="tab">
+           Book Description
+        </a>
+      </li>
+      <li>
+        <a href="#guestReviews" role="tab" data-toggle="tab">
+          Guest Reviews
+        </a>
+      </li>
+      <li>
+        <a href="#bookQuotes" role="tab" data-toggle="tab">
+          Book Quotes
+        </a>
+      </li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane active" id="curatedReviews">
+        {{#each curatedComments}}
+          {{> curatedComment}}
+        {{/each}}
+      </div>
+      <div class="tab-pane" id="bookDescription">
+      </div>
+      <div class="tab-pane" id="guestReviews">
+      </div>
+      <div class="tab-pane" id="bookQuotes">
+        {{#each bookQuotes}}
+          {{> bookQuote}}
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</template>
+
+
+

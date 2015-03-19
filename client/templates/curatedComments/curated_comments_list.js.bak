@@ -1,0 +1,14 @@
+Template.curatedCommentsList.helpers({
+  curatedComments: function() {
+    console.log("Helper Function");
+    console.log("book_id = " + this.book_id);
+    console.log("book_id type = " + typeof this.book_id);
+    console.log("sql count = " + CuratedComments.find({book_id: this.book_id}).count());
+
+    // -------------------------------------------------------------------------
+    // book_id comes from the data function the named route 'curatedComments'.
+    // -------------------------------------------------------------------------
+    return CuratedComments.find({book_id: this.book_id});
+  }
+});
+

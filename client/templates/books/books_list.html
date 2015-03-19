@@ -1,0 +1,29 @@
+<template name="booksList">
+  <!-- <div class="col-sm-10 col-sm-offset-1"> -->
+   <div>
+    <div class=book-table>
+      <table class="table table-condensed table-hover">
+        <colgroup>
+          <col class="book-title" />
+          <col class="author" />
+          <col class="votes" />
+          <col class="comments" />
+        </colgroup>
+        <thead>
+          <tr>
+            <th scope="col" class="title-header">Book</th>
+            <th scope="col">Author</th>
+            <th scope="col" class="number-column">Votes</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each books}}
+            {{> book}}
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</template>

@@ -1,0 +1,11 @@
+<template name="bookDetails">
+  <ul class="list-group">
+    <li class="list-group-item"><a href={{URL}} class="no-underline">{{book_title}}</a></li>
+    <li>{{author}}</li> 
+    <li class="number-column"><span class="badge">{{votes}}</span></li>
+    <li><button class ="btn btn-default btn-block btn-xs btn-primary votes" type ="button" >
+          <span class="glyphicon glyphicon-thumbs-up"></span>
+        </button>
+    </li> 
+  </ul>
+</template>

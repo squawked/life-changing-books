@@ -1,0 +1,38 @@
+// Import Vendors
+@import "vendor/custom.bootstrap.mixins.import.less";
+@import "vendor/custom.bootstrap.import.less";
+
+// Components
+@import "components/a_component.import.less";
+
+// Globals
+@import "typo.import.less";
+
+// Sites
+@import "sites/home.import.less";
+
+// ----------------------------------------------------------------------------
+// Custom
+// ----------------------------------------------------------------------------
+// To center the content of navbar-brand
+// http://stackoverflow.com/questions/20024463/bootstrap-3-how-do-i-place-the-brand-in-the-center-of-the-navbar
+.navbar-header {
+    float: left;
+    padding: 15px;
+    text-align: center;
+    width: 90%;
+}
+.navbar-brand {float:none;}
+
+// Must use !important to override the bootstrap defined behavior
+.no-underline {
+  text-decoration: none !important
+}
+
+.number-column {
+  text-align: right;
+}
+
+.comment {
+  margin-top: 2px;
+}
