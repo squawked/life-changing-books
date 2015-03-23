@@ -1,0 +1,18 @@
+<template name="bookAdded">
+  <div class="col-sm-8 col-sm-offset-2">
+    <div class="book-added page jumbotron">
+      <h3>Book Added Successfully</h3>
+      <div class="alert alert-success" role="alert">{{book_title}} ({{author}})</div>
+    </div>
+
+    <div class="btn-group col-sm-10 col-sm-offset-1" role="group" aria-label="...">
+      <a href="{{pathFor 'addBook'}}" class="btn btn-default">
+         Add Another Book
+      </a>
+      {{> addCuratedCommentButton}}
+      <a href="#" class="btn btn-default">
+         Add a Book Quote
+      </a>
+    </div>
+  </div>
+</template>

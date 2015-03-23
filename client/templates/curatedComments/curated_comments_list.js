@@ -26,4 +26,3 @@ Template.curatedCommentsList.helpers({
     return BookQuotes.find({book_id: this.book_id});
   }
 });
-

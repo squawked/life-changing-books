@@ -1,7 +1,0 @@
-Template.book.events({
-  'click .votes, focus .votes': function() {
-    //console.log("you clicked!" + this._id);
-    Books.update({_id: this._id}, {"$inc": {votes: 1}});
-  }
-});
-
