@@ -46,7 +46,11 @@
               </button>
             </form>
             -->
-          </div>
+             <ul class="nav navbar-nav navbar-right">
+                {{> loginButtons}}
+             </ul>
+         </div>
+         
         <!-- </div> -->
       </nav>
     </header>
@@ -66,4 +70,7 @@
               <li class="active"><a href="{{pathFor 'booksList'}}">Book List</a></li>
               <li><a href="#">Book Request</a></li>
               <li><a href="#">Contact us</a></li>
+              {{#if isInRole "admin"}}
+                  <li><a href="{{pathFor 'addBook'}}">Add Book</a></li>
+              {{/if}}
 </template>

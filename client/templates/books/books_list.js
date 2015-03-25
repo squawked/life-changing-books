@@ -1,5 +1,6 @@
 Meteor.startup(function() {
-    Session.set("sort_order", {votes: -1, book_title: 1});
+   Session.set("sort_order", {votes: -1, book_title: 1});
+    
 })
                
 Template.booksList.helpers({
