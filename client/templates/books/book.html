@@ -13,9 +13,16 @@ See http://getbootstrap.com/components/ for more glyphicon's
           <a href={{URL}} class="no-underline">{{book_title}}</a>
           <td>{{author}}</td> 
           <td class="number-column"><span class="badge">{{votes}}</span></td>
-          <td><button class ="btn btn-default btn-block btn-xs btn-primary votes" type ="button" >
+          <td>
+             {{#if has_voted}}
+             <button class ="btn btn-default btn-block btn-xs btn-primary disabled votes" type ="button" >
                 <span class="glyphicon glyphicon-thumbs-up"></span>
               </button>
+              {{else }}
+             <button class ="btn btn-default btn-block btn-xs btn-primary votes" type ="button" >
+                <span class="glyphicon glyphicon-thumbs-up"></span>
+              </button>             
+             {{/if}}
           </td> 
           <td><a href="{{pathFor 'curatedComments'}}" class="btn btn-default btn-block btn-xs btn-info comments">
                  <span class="glyphicon glyphicon-comment"></span>

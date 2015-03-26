@@ -7,5 +7,6 @@ meteor deploy life-changing-books.meteor.com
 meteor mongo life-changing-books << EOF
 load("../life-changing-books-data/mongo_insert.js")
 load("../life-changing-books-data/mongo_reviews_insert.js")
+load("../life-changing-books-data/mongo_quotes_insert.js")
 quit()
 EOF
