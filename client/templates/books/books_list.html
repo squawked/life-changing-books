@@ -1,8 +1,16 @@
+<template name="urlTempl">
+  <a href={{URL}} class="no-underline">{{book_title}}</a>
+</template>
+
 <template name="booksList">
   <!-- <div class="col-sm-10 col-sm-offset-1"> -->
    <div>
     <div class=book-table>
-      <table class="table table-condensed table-hover">
+       {{> reactiveTable  class="table table-condensed table-hover " collection=books settings=tableSettings}}
+     
+       
+       
+       <table class="table table-condensed table-hover ">
         <colgroup>
           <col class="book-title" />
           <col class="author" />
@@ -23,7 +31,7 @@
             {{> book}}
           {{/each}}
         </tbody>
-      </table>
+      </table> 
     </div>
   </div>
 </template>
