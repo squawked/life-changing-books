@@ -11,13 +11,18 @@ Template.curatedCommentsList.helpers({
 class="nav nav-pills" => pills
 class="nav nav-tabs"  => tabs
 class="active" -> makes the item the default tab to be rendered.
+
+      {{#each book}}
+        {{book_title}} ({{author}})
+      {{/each}}
+
 -->
 
 <template name="curatedCommentsList">
   <div class="col-sm-10 col-sm-offset-1">
     <h4>
       {{#each book}}
-        {{book_title}} ({{author}})
+        <a href={{associate_link}} class="no-underline">{{book_title}}</a> ({{author}})
       {{/each}}
     </h4>
     <ul id="bookDetails" class="nav nav-tabs" role="tablist">

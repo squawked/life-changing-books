@@ -4,11 +4,13 @@ Template.addBook.events({
 
     var book = {
       book_title: $(e.target).find('[name=book_title]').val(),
+      ISBN: $(e.target).find('[name=ISBN]').val(),
       author: $(e.target).find('[name=author]').val(),
       // Need to parse URL. If it doesn't start with "http://", prepend
       // it to the URL. Otherwise, the URL won't be rendered correctly in
       // the book list page.
       URL: $(e.target).find('[name=URL]').val(),
+      associate_link: $(e.target).find('[name=associate_link]').val(),
       votes: 1
     };
 

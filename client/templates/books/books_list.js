@@ -48,7 +48,8 @@ Template.booksList.helpers({
          fields: [
             { key: 'book_title', label: 'Book' , tmpl: Template.urlTempl},               
             { key: 'author', label: 'Author'},
-            { key: 'votes', label: 'Votes', class: 'number-column', cellClass: 'badge', sort: 'descending' },
+            /* { key: 'votes', label: 'Votes', sort: 'descending', tmpl:Template.book2},          */
+            { key: 'votes', label: 'Votes', class: 'number-column', cellClass: 'badge', sort: 'descending' }, 
             { key: '_id', label:'', cellClass: 'btn_vote', fn: function(_id) {return voted(_id);}},
             { key: '_id', label:'', fn: function(_id) {return comments(_id);}} 
           ]
@@ -74,7 +75,7 @@ Template.booksList.events({
        window.location.href='/curatedComments/' + this._id;
     }   else if  (event.target.className == "no-underline") {
        // redirect to curated comments page
-       window.location.href= this.URL;
+       window.location.href= this.associate_link;
     }           
   }
 });
