@@ -11,3 +11,7 @@ Meteor.publish('curatedComments', function() {
 Meteor.publish('bookQuotes', function() {
   return BookQuotes.find();
 });
+
+Meteor.publish('bookRequests', function() {
+  return BookRequests.find();
+});

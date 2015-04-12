@@ -7,12 +7,10 @@
 class="no-underline" -> to disable underlining the link when mouse over it.
 
 See http://getbootstrap.com/components/ for more glyphicon's
+
+btn-info 
 -->
 
-<template name="book2">
-         <td class="number-column"><span class="badge">{{votes}}</span></td>
-        
-</template>
 <template name="book">
         <tr>
           <a href={{associate_link}} class="no-underline">{{book_title}}</a>
@@ -20,16 +18,16 @@ See http://getbootstrap.com/components/ for more glyphicon's
           <td class="number-column"><span class="badge">{{votes}}</span></td>
           <td>
              {{#if has_voted}}
-             <button class ="btn btn-default btn-block btn-xs btn-primary disabled votes" type ="button" >
+             <button class ="btn btn-default btn-block btn-xs disabled votes" type ="button" >
                 <span class="glyphicon glyphicon-thumbs-up"></span>
               </button>
               {{else }}
-             <button class ="btn btn-default btn-block btn-xs btn-primary votes" type ="button" >
+             <button class ="btn btn-default btn-block btn-xs votes" type ="button" >
                 <span class="glyphicon glyphicon-thumbs-up"></span>
               </button>             
              {{/if}}
           </td> 
-          <td><a href="{{pathFor 'curatedComments'}}" class="btn btn-default btn-block btn-xs btn-info comments">
+          <td><a href="{{pathFor 'curatedComments'}}" class="btn btn-info btn-block btn-xs comments">
                  <span class="glyphicon glyphicon-comment"></span>
               </a>
           </td> 

@@ -6,21 +6,21 @@ Meteor.startup(function() {
 var has_voted = function(id){
        var lcb_cookie= "lcb-votes-" + id;                  
        if (!Session.get(lcb_cookie)) {                          
-         // console.log (lcb_cookie + " not found");              
+          console.log (lcb_cookie + " not found");              
           return false;                                        
        } else {                                                  
-         // console.log (lcb_cookie + " voted");                  
+          console.log (lcb_cookie + " voted");                  
           return true;                                          
        }              
   };
    
 var voted = function(id){
      var html;
-   // console.log ("Checking vote for " + id);
+     console.log ("Checking vote for " + id);
      if (has_voted(id)) {
-        html = ' <button class ="btn btn-default btn-block btn-xs btn-primary disabled btn_vote" type ="button" >' +  '<span class="glyphicon glyphicon-thumbs-up"></span> </button>   ' ;
+        html = ' <button class ="btn btn-default btn-block btn-xs btn-primary disabled" type ="button" >' +  '<span class="glyphicon glyphicon-thumbs-up"></span> </button>   ' ;
      } else {
-         html = ' <button class ="btn btn-default btn-block btn-xs btn-primary  btn_vote" type ="button" >' +   '<span class="glyphicon glyphicon-thumbs-up"></span> </button>   ' ;
+         html = ' <button class ="btn btn-default btn-block btn-xs btn-primary btn_vote" type ="button" >' +   '<span class="glyphicon glyphicon-thumbs-up"></span> </button>   ' ;
      }
      return new Spacebars.SafeString(html);
   };  
@@ -48,8 +48,7 @@ Template.booksList.helpers({
          fields: [
             { key: 'book_title', label: 'Book' , tmpl: Template.urlTempl},               
             { key: 'author', label: 'Author'},
-            /* { key: 'votes', label: 'Votes', sort: 'descending', tmpl:Template.book2},          */
-            { key: 'votes', label: 'Votes', class: 'number-column', cellClass: 'badge', sort: 'descending' }, 
+            { key: 'votes', label: 'Votes', cellClass: 'badge pull-right', sort: 'descending' }, 
             { key: '_id', label:'', cellClass: 'btn_vote', fn: function(_id) {return voted(_id);}},
             { key: '_id', label:'', fn: function(_id) {return comments(_id);}} 
           ]
@@ -64,10 +63,10 @@ Template.booksList.events({
   'click .book-table tr': function (event) {
     console.log(" clicked |" + event.target.className + "|");
     event.preventDefault();
-  
-    if (event.target.className == "glyphicon glyphicon-thumbs-up") {
+    var tgt = event.target.className;
+    if (tgt.indexOf("thumbs-up") != -1 || (tgt.indexOf("btn-primary btn_vote") != -1 ) ) {
        var lcb_cookie= "lcb-votes-" + this._id;   
-      // console.log("votes clicked for " + lcb_cookie);
+       console.log("votes clicked for " + lcb_cookie);
        Session.setPersistent(lcb_cookie, "voted");
        Books.update({_id: this._id}, {$inc: {votes: 1}});
     } else if  (event.target.className == "glyphicon glyphicon-comment") {
