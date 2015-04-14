@@ -9,7 +9,7 @@ Template.bookRequest.events({
       approved: false
     
     };
-    console.log("Book request:" + book_request);
+    UI._globalHelpers.consoleLog("Book request:" + book_request);
     
       Meteor.call('bookRequestInsert', book_request, function(error, result) {
       if (error)

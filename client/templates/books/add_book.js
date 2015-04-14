@@ -1,18 +1,16 @@
 Template.addBook.helpers ({
   bookTitle: function() {
       var bt = Session.get("lcb_book_request");
-    //  console.log("session bt = " + bt);
+      UI._globalHelpers.consoleLog("session bt = " + bt);
       if (bt !=='') 
            return bt;
    },
    author: function() {
       var auth = Session.get("lcb_book_request_auth");
-   //   console.log("session bt = " + auth);
+      UI._globalHelpers.consoleLog("session bt = " + auth);
       if (auth !=='') 
            return auth;
-   }, 
-   
-   
+   },
 });
 
 Template.addBook.events({
@@ -56,10 +54,11 @@ Template.addBook.events({
       // display the error to the user and abort
       if (error)
         return alert(error.reason);
-       Session.set("lcb_book_request", '');
-       Session.set("lcb_book_request_auth", '');
+
+      Session.set("lcb_book_request", '');
+      Session.set("lcb_book_request_auth", '');
      
-       Router.go('bookAdded', {book_id: result.book_id});
+      Router.go('bookAdded', {book_id: result.book_id});
     });
   }
 });

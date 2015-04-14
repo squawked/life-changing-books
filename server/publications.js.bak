@@ -1,5 +1,0 @@
-// To turn off autopublishing, run
-// meteor remove autopublish
-Meteor.publish('books', function() {
-  return Books.find();
-});

@@ -4,14 +4,14 @@ Template.curatedCommentsList.helpers({
   },
   curatedComments: function() {
     /*
-    console.log("Helper Function");
-    console.log("book_id = " + this.book_id);
-    console.log("book_id type = " + typeof this.book_id);
-    console.log("this.book_id length = " + this.book_id.length);
+    UI._globalHelpers.consoleLog("Helper Function");
+    UI._globalHelpers.consoleLog("book_id = " + this.book_id);
+    UI._globalHelpers.consoleLog("book_id type = " + typeof this.book_id);
+    UI._globalHelpers.consoleLog("this.book_id length = " + this.book_id.length);
     //book_id = Mongo.ObjectID(this.book_id);
     //book_id = Mongo.ObjectID(this.book_id.substring(10, 34));
-    //console.log(book_id);
-    console.log("sql count = " + CuratedComments.find({book_id: book_id}).count());
+    //UI._globalHelpers.consoleLog(book_id);
+    UI._globalHelpers.consoleLog("sql count = " + CuratedComments.find({book_id: book_id}).count());
     */
 
     // -------------------------------------------------------------------------
@@ -20,9 +20,9 @@ Template.curatedCommentsList.helpers({
     return CuratedComments.find({book_id: this.book_id});
   },
   bookQuotes: function() {
-    console.log("bookQuotes Helper Function");
-    console.log("book_id = " + this.book_id);
-    console.log("# of quotes = " + BookQuotes.find({book_id: this.book_id}).count());
+    UI._globalHelpers.consoleLog("bookQuotes Helper Function");
+    UI._globalHelpers.consoleLog("book_id = " + this.book_id);
+    UI._globalHelpers.consoleLog("# of quotes = " + BookQuotes.find({book_id: this.book_id}).count());
     return BookQuotes.find({book_id: this.book_id});
   }
 });

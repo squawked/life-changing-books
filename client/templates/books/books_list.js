@@ -6,30 +6,33 @@ Meteor.startup(function() {
 var has_voted = function(id){
        var lcb_cookie= "lcb-votes-" + id;                  
        if (!Session.get(lcb_cookie)) {                          
-          console.log (lcb_cookie + " not found");              
+          UI._globalHelpers.consoleLog(lcb_cookie + " not found");              
           return false;                                        
        } else {                                                  
-          console.log (lcb_cookie + " voted");                  
+          UI._globalHelpers.consoleLog(lcb_cookie + " voted");                  
           return true;                                          
        }              
   };
-   
+
 var voted = function(id){
      var html;
-     console.log ("Checking vote for " + id);
+     UI._globalHelpers.consoleLog("Checking vote for " + id);
      if (has_voted(id)) {
-        html = ' <button class ="btn btn-default btn-block btn-xs btn-primary disabled" type ="button" >' +  '<span class="glyphicon glyphicon-thumbs-up"></span> </button>   ' ;
+        html = '<button class ="btn btn-default btn-block btn-xs disabled" type ="button" >' +
+               '<span class="vote-column glyphicon glyphicon-thumbs-up"></span> </button>' ;
      } else {
-         html = ' <button class ="btn btn-default btn-block btn-xs btn-primary btn_vote" type ="button" >' +   '<span class="glyphicon glyphicon-thumbs-up"></span> </button>   ' ;
+        html = '<button class ="btn btn-primary btn-block btn-xs btn_vote active" type ="button" >' +
+               '<span class="vote-column glyphicon glyphicon-thumbs-up"></span> </button>   ' ;
      }
      return new Spacebars.SafeString(html);
-  };  
+  };
 
 var comments = function(id){
      var html;
      var curCom = "/curatedComments/" + id;
-     html = '<a href=' + curCom + ' class="btn btn-default btn-block btn-xs btn-info comments">' +
-                 '<span class="glyphicon glyphicon-comment"></span></a> ';
+     html = '<a href=' + curCom + ' class="btn btn-block btn-xs btn-info comments">' +
+                 // '<span class="glyphicon glyphicon-comment"></span></a> ';
+                 '<span class="comment-column fa fa-comment"></span></a> ';
    
      return new Spacebars.SafeString(html);
   };          
@@ -46,13 +49,12 @@ Template.booksList.helpers({
       return {
          rowsPerPage: 20, 
          fields: [
-            { key: 'book_title', label: 'Book' , tmpl: Template.urlTempl},               
+            { key: 'book_title', label: 'Book', cellClass: 'book-title-column', tmpl: Template.urlTempl},               
             { key: 'author', label: 'Author'},
             { key: 'votes', label: 'Votes', cellClass: 'badge pull-right', sort: 'descending' }, 
-            { key: '_id', label:'', cellClass: 'btn_vote', fn: function(_id) {return voted(_id);}},
-            { key: '_id', label:'', fn: function(_id) {return comments(_id);}} 
+            { key: '_id', label:'', cellClass: 'vote-column', fn: function(_id) {return voted(_id);}},
+            { key: '_id', label:'', cellClass: 'comment-column', fn: function(_id) {return comments(_id);}} 
           ]
-         
       };
     },
 });
@@ -61,19 +63,30 @@ Template.booksList.helpers({
 
 Template.booksList.events({
   'click .book-table tr': function (event) {
-    console.log(" clicked |" + event.target.className + "|");
-    event.preventDefault();
     var tgt = event.target.className;
-    if (tgt.indexOf("thumbs-up") != -1 || (tgt.indexOf("btn-primary btn_vote") != -1 ) ) {
-       var lcb_cookie= "lcb-votes-" + this._id;   
-       console.log("votes clicked for " + lcb_cookie);
-       Session.setPersistent(lcb_cookie, "voted");
-       Books.update({_id: this._id}, {$inc: {votes: 1}});
-    } else if  (event.target.className == "glyphicon glyphicon-comment") {
+    UI._globalHelpers.consoleLog(" clicked |" + tgt + "|");
+
+    event.preventDefault();
+
+    if (tgt.lastIndexOf('vote-column', 0) === 0) {
+       if (!has_voted(this._id)) {
+         var lcb_cookie= "lcb-votes-" + this._id;  
+         UI._globalHelpers.consoleLog("votes clicked for " + lcb_cookie);
+         Session.setPersistent(lcb_cookie, "voted");
+         UI._globalHelpers.consoleLog ("Calling incrementVotes function");
+
+         // increment vote - server side call.
+         Meteor.call('incrementVotes', this._id, function(error, result) {
+           if (error)
+             return alert(error.reason);
+         });
+       }
+
+    } else if  (tgt.lastIndexOf('comment-column', 0) === 0) {
        // redirect to curated comments page
        window.location.href='/curatedComments/' + this._id;
-    }   else if  (event.target.className == "no-underline") {
-       // redirect to curated comments page
+
+    } else if  (tgt.lastIndexOf('book-title-column', 0) === 0) {
        window.location.href= this.associate_link;
     }           
   }

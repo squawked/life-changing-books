@@ -24,13 +24,13 @@ Template.bookRequestList.helpers({
 
 Template.bookRequestList.events({
   'click .book-request-table tr': function (event) {
-    console.log(" clicked |" + event.target.className + "|");
+    UI._globalHelpers.consoleLog(" clicked |" + event.target.className + "|");
     event.preventDefault();
     var tgt = event.target.className;
     if  (tgt.indexOf("btn_approve") != -1) {
        Session.set("lcb_book_request", this.book_title);
        Session.set("lcb_book_request_auth", this.author);
-      // console.log("bookReqList: book title =" + this.book_title);
+      // UI._globalHelpers.consoleLog("bookReqList: book title =" + this.book_title);
        Router.go('/addBook');
     }           
   }

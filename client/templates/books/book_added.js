@@ -1,6 +1,6 @@
 // Template.bookAdded.helpers({
 //   book: function() {
-//     // console.log("book_id (book_added.js) = " + this.book_id)
+//     // UI._globalHelpers.consoleLog("book_id (book_added.js) = " + this.book_id)
 //     return theBook;
 //   }
 // });
